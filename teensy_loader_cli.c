@@ -120,6 +120,9 @@ int main(int argc, char **argv)
 	if (!code_size) {
 		usage("MCU type must be specified");
 	}
+    if ((mfg_name || prod_name || ser_name) && (!soft_reboot_device)) {
+        usage("Filters can only be used with soft reboot");
+    }
 	printf_verbose("Teensy Loader, Command Line, Version 2.1\n");
 
 	if (boot_only) {
