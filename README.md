@@ -1,6 +1,6 @@
 # Teensy Loader - Command Line Version#
 
-The Teensy Loader is available in a command line version for advanced users who want to automate programming, typically using a Makefile. For most uses, the graphical version in Automatic Mode is much easier. 
+The Teensy Loader is available in a command line version for advanced users who want to automate programming, typically using a Makefile. For most uses, the graphical version in Automatic Mode is much easier.
 
 http://www.pjrc.com/teensy/loader_cli.html
 
@@ -49,6 +49,14 @@ Optional command line parameters:
 `-n` : No reboot after programming. After programming the hex file, do not reboot. HalfKay remains running. This option may be useful if you wish to program the code but do not intend for it to run until the Teensy is installed inside a system with its I/O pins connected.
 
 `-v` : Verbose output. Normally teensy_loader_cli prints only error messages if any operation fails. This enables verbose output, which can help with troubleshooting, or simply show you more status information.
+
+`--mfg=<MANUFACTURER>` : Only flash the first Teensy for which `MANUFACTURER` exactly matches the `iManufacturer` field in the Teensy USB descriptor.
+
+`--prod=<PRODUCT>` : Only flash the first Teensy for which `PRODUCT` exactly matches the `iProduct` field in the Teensy USB descriptor.
+
+`--ser=<SERIAL_NUMBER>` : Only flash the first Teensy for which `SERIAL_NUMBER` exactly matches the `iSerialNumber` field in the Teensy USB descriptor.
+
+The `mfg`, `prod` and `ser` parameters restrict Teensy selection to their respective values, allowing multiple Teensies to be connected and managed at the same time, as long as no Teensies have been set to bootloader mode manually.
 
 ## System Specific Setup
 
