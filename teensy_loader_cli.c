@@ -123,7 +123,7 @@ int main(int argc, char **argv)
     if ((mfg_name || prod_name || ser_name) && (!soft_reboot_device)) {
         usage("Filters can only be used with soft reboot");
     }
-	printf_verbose("Teensy Loader, Command Line, Version 2.1\n");
+	printf_verbose("Teensy Loader, Command Line, Version 2.1.1\n");
 
 	if (boot_only) {
 		if (! teensy_open()) {
