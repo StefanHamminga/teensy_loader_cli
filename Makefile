@@ -28,7 +28,7 @@ CC ?= gcc
 CFLAGS ?= -O2 -Wall
 teensy_loader_cli: teensy_loader_cli.c
 	$(CC) $(CFLAGS) -s -DUSE_LIBUSB -DMACOSX -o teensy_loader_cli teensy_loader_cli.c -lusb -I /usr/local/include -L/usr/local/lib
-	 
+
 else
 CC ?= gcc
 SDK ?= $(shell xcrun --show-sdk-path)
@@ -57,3 +57,14 @@ endif
 
 clean:
 	rm -f teensy_loader_cli teensy_loader_cli.exe*
+
+PREFIX = /usr/local
+
+.PHONY: install
+install: teensy_loader_cli
+	mkdir -p $(DESTDIR)$(PREFIX)/bin
+	cp $< $(DESTDIR)$(PREFIX)/bin/teensy_loader_cli
+
+.PHONY: uninstall
+uninstall:
+	rm -f $(DESTDIR)$(PREFIX)/bin/teensy_loader_cli
