@@ -56,14 +56,21 @@ endif
 
 
 clean:
-	rm -f teensy_loader_cli teensy_loader_cli.exe*
+	rm -f teensy_loader_cli teensy_loader_cli.1.gz* teensy_loader_cli.exe*
+
+manpage:
+	ronn -r --manual="teensy_loader_cli" --pipe README.md | gzip -9 --rsyncable > teensy_loader_cli.1.gz
 
 PREFIX = /usr/local
+BINDIR = /bin
+DATAROOTDIR = /share
+MANDIR = /man
+MAN1DIR = /man1
 
 .PHONY: install
-install: teensy_loader_cli
-	mkdir -p $(DESTDIR)$(PREFIX)/bin
-	cp $< $(DESTDIR)$(PREFIX)/bin/teensy_loader_cli
+install: teensy_loader_cli teensy_loader_cli.1.gz
+	install -Dm 755 teensy_loader_cli $(DESTDIR)$(PREFIX)$(BINDIR)/teensy_loader_cli
+	install -Dm 644 teensy_loader_cli.1.gz $(DESTDIR)$(PREFIX)$(DATAROOTDIR)$(MANDIR)$(MAN1DIR)/teensy_loader_cli.1.gz
 
 .PHONY: uninstall
 uninstall:
